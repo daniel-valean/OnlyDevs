@@ -6,5 +6,14 @@ type User {
     firstName: String
     lastName: String
     email: String
+    password: String
+} 
+
+type Post {
+    _id: ID
+    description: String
+    image: String
+    fundingGoal: String
+    purpose: String
 } 
 `
