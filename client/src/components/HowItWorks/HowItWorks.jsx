@@ -35,7 +35,7 @@ export default function HowitWorks() {
                 <img src={ArrowDown} style={{margin: "0px 10px 0px 10px"}}/>
                 <Card className='how-it-works-cards' width="25%" bg='#fcfcf0'>
                     <CardBody align="center">
-                        <Heading size='lg' color="#484a4a">Community Support</Heading>
+                        <Heading size='lg' color="#484a4a">Receive Community Support</Heading>
                         <p style={{fontSize: "10em", color: "red"}}><RiHeartsFill/></p>
                     </CardBody>
                 </Card>
