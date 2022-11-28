@@ -21,7 +21,13 @@ const postSchema = new Schema({
     },
     purpose: {
         type: String
-    }
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true  
+    },
+    comment: [Comment.Schema]
 });
 
 const Post = mongoose.model('Post', postSchema)
