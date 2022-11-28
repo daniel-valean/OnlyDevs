@@ -4,13 +4,16 @@
     display: flex;
     justify-content: center;
     margin-top: 25px;
+    z-index: 10;
 }
 
 .header-body {
     height: 60px;
-    background-color: #F8F9F8;
+    background-color: var(--light);
     /* background-color: white; */
     border-radius: 30px;
+    /* border: 1px #484a4a solid; */
+    box-shadow: 2px 2px 7px black;
     width: 52%;
     display: flex;
     justify-content: space-between;
@@ -32,5 +35,5 @@
     display: inline;
     padding: 0px 20px 0px 20px;
     text-decoration: none;
-    color: #181E24;
+    color: #484a4a;
 }

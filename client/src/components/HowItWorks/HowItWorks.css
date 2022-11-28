@@ -1,0 +1,44 @@
+:root {
+    --light: #F8F9F8;
+    --light-grey: #9E9D9D;
+    --navy-blue: #282b3d;
+    --black: #2C2D2D;
+    --onlyDevsBlue: #05d5f4;
+}
+
+.how-it-works-wrapper {
+    padding: 80px 0px 80px 0px;
+    background-color: var(--light);
+}
+
+.how-it-works-cards-wrapper1 {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 25px 0px 25px 0px;
+}
+
+.how-it-works-cards-wrapper2 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 25px 0px 25px 0px;
+}
+
+/* .how-it-works-cards {
+    min-width: 3000px;
+} */
+
+.how-it-works-title-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.how-it-works-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #484a4a;
+}

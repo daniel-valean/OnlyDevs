@@ -1,0 +1,12 @@
+.GetStarted-wrapper {
+    padding: 80px 0px 80px 0px;
+    background-color: var(--light);
+}
+
+.GetStarted-card-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 25px 0px 25px 0px;
+}

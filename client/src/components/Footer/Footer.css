@@ -1,0 +1,12 @@
+.icons-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7em;
+    padding: 10px 0px 30px 0px;
+    background-color: var(--light);
+}
+
+.icons-holder p {
+    margin: 0px 10px;
+}
