@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const User = require('./User');
 const commentSchema = require('./Comment');
 
-const postSchema = new Schema({
+const projectSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -36,6 +36,6 @@ const postSchema = new Schema({
     comments: [commentSchema]
 });
 
-const Post = mongoose.model('Post', postSchema)
+const Project = mongoose.model('Project', projectSchema)
 
-module.exports = Post
+module.exports = Project

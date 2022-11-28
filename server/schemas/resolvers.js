@@ -1,14 +1,14 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Post, Comment } = require('../models');
+const { User, Project, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        getPosts: async (parent, args, context) => {
-            return await Post.find().populate('user');
+        getProjects: async (parent, args, context) => {
+            return await Project.find().populate('user');
         },
-        getPost: async (parent, { _id }) => {
-            return await Post.findById(_id).populate('user');
+        getProject: async (parent, { _id }) => {
+            return await Project.findById(_id).populate('user');
         },
 
         getUser: async (parent, args, context) => {
@@ -17,23 +17,23 @@ const resolvers = {
             }
         },
     },
-    Mutations: {
+    Mutation: {
         addUser: async (parent, args) => {
             const user = await User.create(args);
             const token = signToken(user)
 
             return { token, user };
         },
-        addPost: async (parent, args, context) => {
-            const post = await Post.create({ ...args, user: context.user._id })
-            const token = signToken(post)
+        addProject: async (parent, args, context) => {
+            const Project = await Project.create({ ...args, user: context.user._id })
+            const token = signToken(Project)
 
-            return { token, post };
+            return { token, project };
         },
         addComment: async (parent, args) => {
-            const updatedPost = await Post.findOneAndUpdate({_id: args.postId}, {$push: {comments: {comment: args.comment}}}, {returnOriginal: false})
+            const updatedProject = await Project.findOneAndUpdate({_id: args.projectId}, {$push: {comments: {comment: args.comment}}}, {returnOriginal: false})
             
-            return updatedPost;
+            return updatedProject;
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
