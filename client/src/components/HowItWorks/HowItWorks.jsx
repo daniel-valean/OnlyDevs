@@ -1,7 +1,7 @@
 import './HowItWorks.css'
 import { SimpleGrid, Card, CardBody, Stack, Heading } from '@chakra-ui/react'
 import {RiHeartsFill} from 'react-icons/ri'
-import {GiStairsGoal} from 'react-icons/gi'
+import {GiStairsGoal, GiAchievement} from 'react-icons/gi'
 import { MdPersonAddAlt1 } from 'react-icons/md';
 import ArrowDown from '../../images/Arrow-Down.png'
 import ArrowUp from '../../images/Arrow-Up.png'
@@ -22,8 +22,8 @@ export default function HowitWorks() {
                 </Card>
                 <Card className='how-it-works-cards' width="25%" bg='#fcfcf0'>
                     <CardBody align="center">
-                        <Heading size='lg' color="#484a4a">Your Dreams to Reality</Heading>
-                        <p style={{fontSize: "10em", color: "green"}}><GiStairsGoal/></p>
+                        <Heading size='lg' color="#484a4a">Achieve Your Goals</Heading>
+                        <p style={{fontSize: "10em", color: "green"}}><GiAchievement/></p>
                     </CardBody>
                 </Card>
             </div>
@@ -31,7 +31,7 @@ export default function HowitWorks() {
                 <img src={ArrowDown} style={{margin: "0px 10px 0px 10px"}}/>
                 <Card className='how-it-works-cards' width="25%" bg='#fcfcf0'>
                     <CardBody align="center">
-                        <Heading size='lg' color="#484a4a">Await Community Support</Heading>
+                        <Heading size='lg' color="#484a4a">Community Support</Heading>
                         <p style={{fontSize: "10em", color: "red"}}><RiHeartsFill/></p>
                     </CardBody>
                 </Card>
