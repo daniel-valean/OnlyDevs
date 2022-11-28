@@ -8,7 +8,7 @@ export default function FeaturedProjects() {
                 <h1>Featured Projects</h1>
             </div>
             <div className='featured-cards-holder'>
-                <Card direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="45%">
+                <Card borderRadius="0" direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="40%">
                     <Image objectFit='cover' maxW={{ base: '100%', sm: '200px' }} src='https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60' alt='Caffe Latte'/>
                     <Stack>
                         <CardBody>
@@ -25,7 +25,7 @@ export default function FeaturedProjects() {
                         </CardFooter>
                     </Stack>
                 </Card>
-                <Card direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="45%">
+                <Card borderRadius="0" direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="40%">
                     <Image objectFit='cover' maxW={{ base: '100%', sm: '200px' }} src='https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60' alt='Caffe Latte'/>
                     <Stack>
                         <CardBody>
@@ -44,7 +44,7 @@ export default function FeaturedProjects() {
                 </Card>
             </div>
             <div className='featured-cards-holder'>
-                <Card direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="45%">
+                <Card borderRadius="0" direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="40%">
                     <Image objectFit='cover' maxW={{ base: '100%', sm: '200px' }} src='https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60' alt='Caffe Latte'/>
                     <Stack>
                         <CardBody>
@@ -61,7 +61,7 @@ export default function FeaturedProjects() {
                         </CardFooter>
                     </Stack>
                 </Card>
-                <Card direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="45%">
+                <Card borderRadius="0" direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="40%">
                     <Image objectFit='cover' maxW={{ base: '100%', sm: '200px' }} src='https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60' alt='Caffe Latte'/>
                     <Stack>
                         <CardBody>
@@ -80,7 +80,7 @@ export default function FeaturedProjects() {
                 </Card>
             </div>
             <div className='featured-cards-holder'>
-                <Card direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="45%">
+                <Card borderRadius="0" direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="40%">
                     <Image objectFit='cover' maxW={{ base: '100%', sm: '200px' }} src='https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60' alt='Caffe Latte'/>
                     <Stack>
                         <CardBody>
@@ -97,7 +97,7 @@ export default function FeaturedProjects() {
                         </CardFooter>
                     </Stack>
                 </Card>
-                <Card direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="45%">
+                <Card borderRadius="0" direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="40%">
                     <Image objectFit='cover' maxW={{ base: '100%', sm: '200px' }} src='https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60' alt='Caffe Latte'/>
                     <Stack>
                         <CardBody>
