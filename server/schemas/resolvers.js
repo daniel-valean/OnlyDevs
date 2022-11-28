@@ -1,23 +1,21 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Post, Comment } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        posts: async (parent, args, context) => {
-            return await Post.find();
+        getPosts: async (parent, args, context) => {
+            return await Post.find().populate('user');
         },
-        post: async (parent, { _id }) => {
-            return await Post.findById(_id).populate('comments');
+        getPost: async (parent, { _id }) => {
+            return await Post.findById(_id).populate('user');
         },
 
-        user: async (parent, args, context) => {
+        getUser: async (parent, args, context) => {
             if (context.user) {
-                const user = await User.findById(context.user._id).populate('post')
+                const user = await User.findById(context.user._id)
             }
         },
-        comment: async (parent, args, context) => {
-            return await Comment.find();
-        }
     },
     Mutations: {
         addUser: async (parent, args) => {
@@ -26,17 +24,16 @@ const resolvers = {
 
             return { token, user };
         },
-        addPost: async (parent, args) => {
-            const post = await Post.create(args)
+        addPost: async (parent, args, context) => {
+            const post = await Post.create({ ...args, user: context.user._id })
             const token = signToken(post)
 
             return { token, post };
         },
         addComment: async (parent, args) => {
-            const comment = await Comment.create(args)
-            const token = signToken(comment)
-
-            return { token, comment };
+            const updatedPost = await Post.findOneAndUpdate({_id: args.postId}, {$push: {comments: {comment: args.comment}}}, {returnOriginal: false})
+            
+            return updatedPost;
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
@@ -44,9 +41,9 @@ const resolvers = {
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials');
             }
-            const correctPw = await user.isCorrectPassword(password);
+            const correctPassword = await user.isCorrectPassword(password);
 
-            if (!correctPw) {
+            if (!correctPassword) {
                 throw new AuthenticationError('Incorrect credentials');
             }
 

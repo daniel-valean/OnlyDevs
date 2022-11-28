@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+const User = require('./User');
+const commentSchema = require('./Comment');
 
 const postSchema = new Schema({
-    name: {
+    title: {
         type: String,
-        required: true, 
-        trim: true
+        required: true
     },
     description: {
         type: String,
@@ -19,6 +20,11 @@ const postSchema = new Schema({
         type: Number,
         required: true
     },
+    fundingProgress: {
+        type: Number,
+        required: true,
+        default: 0
+    },
     purpose: {
         type: String
     },
@@ -27,7 +33,7 @@ const postSchema = new Schema({
         ref: 'User',
         required: true  
     },
-    comment: [Comment.Schema]
+    comments: [commentSchema]
 });
 
 const Post = mongoose.model('Post', postSchema)

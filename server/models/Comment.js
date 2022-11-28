@@ -11,21 +11,21 @@ const commentSchema = new Schema({
         required: true
     },
     createdAt: {
-        type: Date.now
+        type: Date,
+        default: Date.now
     },
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true  
-    },
-    post: {
-        type: Schema.Types.ObjectId,
-        ref: 'Post',
-        required: true  
-    }
+    // user: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User',
+    //     required: true  
+    // },
+    // post: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Post',
+    //     required: true  
+    // }
 
 })
 
-const Comment = mongoose.model('Comment', commentSchema)
 
-module.exports = Comment
+module.exports = commentSchema
