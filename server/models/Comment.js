@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const User = require('./User')
-const Post = require('./Post')
+const Project = require('./Project')
 
 
 const commentSchema = new Schema({
@@ -11,7 +11,7 @@ const commentSchema = new Schema({
         required: true
     },
     createdAt: {
-        type: Date,
+        type: String,
         default: Date.now
     },
     // user: {
@@ -19,9 +19,9 @@ const commentSchema = new Schema({
     //     ref: 'User',
     //     required: true  
     // },
-    // post: {
+    // project: {
     //     type: Schema.Types.ObjectId,
-    //     ref: 'Post',
+    //     ref: 'Project',
     //     required: true  
     // }
 
