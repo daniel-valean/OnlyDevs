@@ -4,6 +4,7 @@ import {useState, useMutation} from 'react'
 import { ADD_USER } from '../../utils/mutations'
 
 export default function SignUpForm() {
+    //connecting to the ADD_USER mutation
     const [addUser, {error}] = useMutation(ADD_USER)
     const [showPassword, setShowPassword] = useState(false)
     const handleShowPassword = () => setShowPassword(!showPassword)

@@ -4,6 +4,7 @@ import {useState, useMutation } from 'react'
 import { LOGIN } from '../../utils/mutations'
 
 export default function LoginForm() {
+    //connecting to LOGIN mutation
     const [login, {error}] = useMutation(LOGIN)
     const [showPassword, setShowPassword] = useState(false)
     const handleShowPassword = () => setShowPassword(!showPassword)
