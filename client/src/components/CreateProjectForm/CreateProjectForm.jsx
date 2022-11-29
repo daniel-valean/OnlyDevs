@@ -1,8 +1,12 @@
 import './CreateProjectForm.css'
 import { FormControl, FormLabel, Input, FormHelperText, Text, InputGroup, Button, InputRightElement, InputLeftElement, Textarea} from '@chakra-ui/react'
 import {useState} from 'react'
+import { useMutation } from '@apollo/client'
+import { ADD_PROJECT } from '../../utils/mutations'
+import Auth from '../../utils/auth';
 
 export default function CreateProjectForm() {
+    const [addProject, {error}] = useMutation(ADD_PROJECT)
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState("");
@@ -30,9 +34,26 @@ export default function CreateProjectForm() {
         }
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         console.log(title, description, image, fundingGoal, purpose);
+        try{
+            const {data} = await addProject({
+                variables: {
+                    title, 
+                    description, 
+                    image, 
+                    fundingGoal: parseInt(fundingGoal), 
+                    purpose
+                }
+            })
+                console.log(data)
+            if(data) {
+                window.location.assign('/project-display');
+            }
+        }catch(error){
+            console.log(error)
+        }
         setTitle("");
         setDescription("");
         setImage("");

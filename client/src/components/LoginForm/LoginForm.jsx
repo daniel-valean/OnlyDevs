@@ -39,6 +39,7 @@ export default function LoginForm() {
             Auth.login(data.login.token);
             setUsername('');
             setPassword('');
+            
         }catch(error){
             console.log(error)
         }

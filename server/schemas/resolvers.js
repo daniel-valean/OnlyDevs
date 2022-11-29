@@ -10,7 +10,6 @@ const resolvers = {
         getProject: async (parent, { _id }) => {
             return await Project.findById(_id).populate('user');
         },
-
         getUser: async (parent, args, context) => {
             if (context.user) {
                 const user = await User.findById(context.user._id)
@@ -25,18 +24,18 @@ const resolvers = {
             return { token, user };
         },
         addProject: async (parent, args, context) => {
-            const Project = await Project.create({ ...args, user: context.user._id })
-            const token = signToken(Project)
-
-            return { token, project };
+            console.log(context)
+            console.log('word')
+            const addProject = await Project.create({ ...args, user: context.user._id })
+            return addProject
         },
         addComment: async (parent, args) => {
             const updatedProject = await Project.findOneAndUpdate({_id: args.projectId}, {$push: {comments: {comment: args.comment}}}, {returnOriginal: false})
             
             return updatedProject;
         },
-        login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
+        login: async (parent, { username, password }) => {
+            const user = await User.findOne({ username });
 
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials');
