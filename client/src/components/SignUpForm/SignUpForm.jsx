@@ -2,9 +2,10 @@ import './SignUpForm.css'
 import { FormControl, FormLabel, Input, FormHelperText, Text, InputGroup, Button, InputRightElement} from '@chakra-ui/react'
 import {useState, useMutation} from 'react'
 import { ADD_USER } from '../../utils/mutations'
+import Auth from '../../utils/auth'
 
 export default function SignUpForm() {
-    const [addUser, {error}] = useMutation(ADD_USER)
+    // const [addUser] = useMutation(ADD_USER)
     const [showPassword, setShowPassword] = useState(false)
     const handleShowPassword = () => setShowPassword(!showPassword)
 
@@ -38,18 +39,18 @@ export default function SignUpForm() {
         e.preventDefault();
         console.log(username, email, password, confirmPassword);
         //adding login logic
-        try{
-            const data = await addUser({
-                variables: {
-                    username,
-                    email,
-                    password
-                }
-            })
-            Auth.login(data.addUser.token);
-        }catch(error){
-            console.log(error)
-        }
+        // try{
+        //     const data = await addUser({
+        //         variables: {
+        //             username,
+        //             email,
+        //             password
+        //         }
+        //     })
+        //     Auth.login(data.addUser.token);
+        // }catch(error){
+        //     console.log(error)
+        // }
 
         setUsername("");
         setEmail("");

@@ -23,8 +23,8 @@
 }
 
 .logo {
-    height: 75%;
-    justify-self: center;
+    height: 80%;
+    /* justify-self: center; */
 }
 
 .header-left-text {
