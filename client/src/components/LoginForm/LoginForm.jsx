@@ -1,11 +1,12 @@
 import './LoginForm.css'
 import { FormControl, FormLabel, Input, Text, InputGroup, Button, InputRightElement} from '@chakra-ui/react'
-import {useState, useMutation } from 'react'
+import { useState } from 'react'
+import { useMutation } from '@apollo/client'
 import { LOGIN } from '../../utils/mutations'
-import Auth from '../../utils/auth'
+import Auth from '../../utils/auth';
 
 export default function LoginForm() {
-    // const [login] = useMutation(LOGIN)
+    const [login, {error}] = useMutation(LOGIN)
     const [showPassword, setShowPassword] = useState(false)
     const handleShowPassword = () => setShowPassword(!showPassword)
 
@@ -28,19 +29,19 @@ export default function LoginForm() {
         e.preventDefault();
         console.log(username, password);
         //added logic for login
-        // try{
-        //     const data = await login({
-        //         variables: {
-        //             username,
-        //             password
-        //         }
-        //     })
-        //     Auth.login(data.addUser.token);
-            setUsername("");
-            setPassword("");
-        // }catch(error){
-        //     console.log(error)
-        // }
+        try{
+            const {data} = await login({
+                variables: {
+                    username,
+                    password
+                }
+            })
+            Auth.login(data.login.token);
+            setUsername('');
+            setPassword('');
+        }catch(error){
+            console.log(error)
+        }
     }
 
     return (

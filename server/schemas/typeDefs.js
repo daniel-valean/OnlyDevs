@@ -43,7 +43,7 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addProject(title: String, description: String, fundingGoal: Int, image: String, purpose: String): Project
     addComment( comment: String, projectId: ID): Project
-    login(email: String!, password: String!): Auth
+    login(username: String!, password: String!): Auth
 }
 `
 
