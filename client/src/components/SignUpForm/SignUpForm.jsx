@@ -17,12 +17,12 @@ export default function SignUpForm() {
     const [confirmPassword, setConfirmPassword] = useState("");
 
     function handleInputChange(e) {
-        const {name, value} = e.target;
-        switch(name) {
+        const { name, value } = e.target;
+        switch (name) {
             case "username":
                 setUsername(value);
                 break;
-            case "email": 
+            case "email":
                 setEmail(value);
                 break;
             case "password":
@@ -59,30 +59,30 @@ export default function SignUpForm() {
 
 
     return (
-        <form onSubmit={handleSubmit} style={{width: "50%"}}>
+        <form onSubmit={handleSubmit} style={{ width: "50%" }}>
             <FormControl bg='#F8F9F8' borderRadius='4' width="100%" padding="30" isRequired>
                 <Text fontSize='4xl' marginBottom="20px">Sign-Up!</Text>
 
                 <FormLabel>Username</FormLabel>
-                <Input onChange={handleInputChange} value={username} marginBottom="20px" type='text' name='username' placeholder='Enter Username'/>
+                <Input onChange={handleInputChange} value={username} marginBottom="20px" type='text' name='username' placeholder='Enter Username' />
 
                 <FormLabel>Email Address</FormLabel>
-                <Input onChange={handleInputChange} value={email} type='email' name='email' placeholder='Enter Email'/>
+                <Input onChange={handleInputChange} value={email} type='email' name='email' placeholder='Enter Email' />
                 <FormHelperText marginBottom="20px">We'll never share your email.</FormHelperText>
 
                 <FormLabel>Password</FormLabel>
                 <InputGroup size='md' marginBottom="20px">
                     <Input
                         onChange={handleInputChange}
-                        name = "password"
-                        value = {password}
+                        name="password"
+                        value={password}
                         pr='4.5rem'
                         type={showPassword ? 'text' : 'password'}
                         placeholder='Enter Password'
                     />
                     <InputRightElement width='4.5rem'>
                         <Button h='1.75rem' size='sm' onClick={handleShowPassword}>
-                        {showPassword ? 'Hide' : 'Show'}
+                            {showPassword ? 'Hide' : 'Show'}
                         </Button>
                     </InputRightElement>
                 </InputGroup>
@@ -91,15 +91,15 @@ export default function SignUpForm() {
                 <InputGroup size='md' marginBottom="20px">
                     <Input
                         onChange={handleInputChange}
-                        name = "confirmPassword"
-                        value = {confirmPassword}
+                        name="confirmPassword"
+                        value={confirmPassword}
                         pr='4.5rem'
                         type={showConfirmPassword ? 'text' : 'password'}
                         placeholder='Re-enter Password'
                     />
                     <InputRightElement width='4.5rem'>
                         <Button h='1.75rem' size='sm' onClick={handleShowConfirmPassword}>
-                        {showConfirmPassword ? 'Hide' : 'Show'}
+                            {showConfirmPassword ? 'Hide' : 'Show'}
                         </Button>
                     </InputRightElement>
                 </InputGroup>
