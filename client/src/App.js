@@ -6,8 +6,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 function App() {
   return (
     <ChakraProvider>
-      {/* <Homepage/> */}
-      <Forms/>
+      <Homepage/>
+      {/* <Forms/> */}
     </ChakraProvider>
   );
 }
