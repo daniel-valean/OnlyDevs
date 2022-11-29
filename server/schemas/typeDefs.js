@@ -31,7 +31,7 @@ type Comment {
 type Auth {
     token: ID
     user: User
-}
+  }
 
 type Query {
     getUser: User
