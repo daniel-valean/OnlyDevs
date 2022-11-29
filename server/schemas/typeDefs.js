@@ -8,7 +8,7 @@ type User {
     password: String
 } 
 
-type Post {
+type Project {
     _id: ID
     title: String
     description: String
@@ -23,9 +23,9 @@ type Post {
 type Comment {
     _id: ID
     comment: String
-    createdAt: Date
+    createdAt: String
     # user: User
-    # post: Post
+    # project: Project
 }
 
 type Auth {
@@ -35,14 +35,14 @@ type Auth {
 
 type Query {
     getUser: User
-    getPost(_id: ID, name: String): Post
-    getPosts: [Post]
+    getProject(_id: ID, name: String): Project
+    getProjects: [Project]
 }
 
-type Mutations {
+type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    addPost(title: String, description: String, fundingGoal: Int, image: String, purpose: String): Post
-    addComment( comment: String, postId: ID): Comment
+    addProject(title: String, description: String, fundingGoal: Int, image: String, purpose: String): Project
+    addComment( comment: String, projectId: ID): Project
     login(email: String!, password: String!): Auth
 }
 `
