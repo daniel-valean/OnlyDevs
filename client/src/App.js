@@ -36,7 +36,7 @@ function App() {
             <Route path='/' element={<Homepage />} />
             <Route path='/forms/:formType' element={<Forms />} />
             <Route path='/project-display' element={<ProjectDisplay />} />
-            <Route path='*' element={<h1 className='display-2'>Wrong page!</h1>} />
+            <Route path='*' element={<h1>Wrong page!</h1>} />
           </Routes>
         </ChakraProvider>
       </Router>
