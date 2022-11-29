@@ -15,6 +15,7 @@ const projectSchema = new Schema({
     },
     image: {
         type: String, 
+        required: true,
     },
     fundingGoal: {
         type: Number,
@@ -25,7 +26,8 @@ const projectSchema = new Schema({
         default: 0
     },
     purpose: {
-        type: String
+        type: String,
+        required: true,
     },
     user: {
         type: Schema.Types.ObjectId,
