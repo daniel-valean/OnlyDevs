@@ -1,7 +1,9 @@
 import './SignUpForm.css'
 import { FormControl, FormLabel, Input, FormHelperText, Text, InputGroup, Button, InputRightElement} from '@chakra-ui/react'
-import {useState, useMutation} from 'react'
+import { useState } from 'react'
+import { useMutation } from '@apollo/client'
 import { ADD_USER } from '../../utils/mutations'
+import Auth from '../../utils/auth';
 
 export default function SignUpForm() {
     const [addUser, {error}] = useMutation(ADD_USER)
@@ -39,7 +41,7 @@ export default function SignUpForm() {
         console.log(username, email, password, confirmPassword);
         //adding login logic
         try{
-            const data = await addUser({
+            const {data} = await addUser({
                 variables: {
                     username,
                     email,
