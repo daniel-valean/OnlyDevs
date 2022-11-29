@@ -1,0 +1,24 @@
+.project-display-wrapper {
+    background-color: var(--light);
+    min-height: 100vh;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 120px 0 0px 0px;
+}
+
+.project-display-middle {
+    width: 95%;
+    display: flex;
+    justify-content: start;
+
+}
+
+.goals {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    /* align-items: start; */
+    min-width: 75%;
+}
