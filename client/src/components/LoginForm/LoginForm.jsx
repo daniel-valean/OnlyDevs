@@ -35,11 +35,11 @@ export default function LoginForm() {
                 }
             })
             Auth.login(data.addUser.token);
+            setUsername("");
+            setPassword("");
         }catch(error){
             console.log(error)
         }
-        setUsername("");
-        setPassword("");
     }
 
     return (
