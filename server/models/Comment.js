@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-const User = require('./User')
-const Project = require('./Project')
+const User = require('./User');
+const Project = require('./Project');
 
 
 const commentSchema = new Schema({

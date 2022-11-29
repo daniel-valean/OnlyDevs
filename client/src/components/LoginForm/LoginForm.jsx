@@ -1,8 +1,11 @@
 import './LoginForm.css'
 import { FormControl, FormLabel, Input, Text, InputGroup, Button, InputRightElement} from '@chakra-ui/react'
 import {useState} from 'react'
+import { useMutation } from '@apollo/client';
+import {LOGIN } from '../utils/mutations';
 
 export default function LoginForm() {
+    const [login, {error}] = useMutation(LOGIN)
     const [showPassword, setShowPassword] = useState(false)
     const handleShowPassword = () => setShowPassword(!showPassword)
 
@@ -21,11 +24,22 @@ export default function LoginForm() {
         }
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         console.log(username, password);
-        setUsername("");
-        setPassword("");
+        try {
+            const data = await login({
+                variables: { 
+                    username,
+                    password
+                }
+            })
+            Auth.login(data.login.token);
+            setUsername("");
+            setPassword("");
+        } catch(err) {
+            console.error(err)
+        }
     }
 
     return (
