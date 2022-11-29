@@ -1,0 +1,26 @@
+.form-page-wrapper {
+    display: flex;
+    min-height: 100vh;
+    min-width: 100%;
+    background-color: var(--light);
+}
+
+.form-wrapper {
+    min-width: 75%;
+    max-width: 75%;
+    min-height: 100%;
+    background-color: var(--navy-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 3px 0px 5px var(--black);
+}
+
+.form-page-logo-wrapper {
+    min-width: 25%;
+    max-width: 25%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
