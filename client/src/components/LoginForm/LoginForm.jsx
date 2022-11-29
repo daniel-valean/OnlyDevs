@@ -21,7 +21,7 @@ export default function LoginForm() {
         }
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         console.log(username, password);
         setUsername("");
