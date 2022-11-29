@@ -1,5 +1,6 @@
 import './FeaturedProjects.css'
 import { Card, CardBody, Stack, Heading, Text, CardFooter, Button, Image} from '@chakra-ui/react'
+import {Link} from 'react-router-dom'
 
 export default function FeaturedProjects() {
     return (
@@ -19,9 +20,11 @@ export default function FeaturedProjects() {
                             </Text>
                         </CardBody>
                         <CardFooter>
-                            <Button variant='solid' bg="#05d5f4" color="white">
-                                View Project!
-                            </Button>
+                            <Link to='/project-display'>
+                                <Button variant='solid' colorScheme="blue" bg="#05d5f4" color="white">
+                                    View Project!
+                                </Button>
+                            </Link>
                         </CardFooter>
                     </Stack>
                 </Card>
@@ -36,9 +39,11 @@ export default function FeaturedProjects() {
                             </Text>
                         </CardBody>
                         <CardFooter>
-                            <Button variant='solid' bg="#05d5f4" color="white">
-                                View Project!
-                            </Button>
+                            <Link to='/project-display'>
+                                <Button variant='solid' colorScheme="blue" bg="#05d5f4" color="white">
+                                    View Project!
+                                </Button>
+                            </Link>
                         </CardFooter>
                     </Stack>
                 </Card>
@@ -55,9 +60,11 @@ export default function FeaturedProjects() {
                             </Text>
                         </CardBody>
                         <CardFooter>
-                            <Button variant='solid' bg="#05d5f4" color="white">
-                                View Project!
-                            </Button>
+                            <Link to='/project-display'>
+                                <Button variant='solid' colorScheme="blue" bg="#05d5f4" color="white">
+                                    View Project!
+                                </Button>
+                            </Link>
                         </CardFooter>
                     </Stack>
                 </Card>
@@ -72,9 +79,11 @@ export default function FeaturedProjects() {
                             </Text>
                         </CardBody>
                         <CardFooter>
-                            <Button variant='solid' bg="#05d5f4" color="white">
-                                View Project!
-                            </Button>
+                            <Link to='/project-display'>
+                                <Button variant='solid' colorScheme="blue" bg="#05d5f4" color="white">
+                                    View Project!
+                                </Button>
+                            </Link>
                         </CardFooter>
                     </Stack>
                 </Card>
@@ -91,9 +100,11 @@ export default function FeaturedProjects() {
                             </Text>
                         </CardBody>
                         <CardFooter>
-                            <Button variant='solid' bg="#05d5f4" color="white">
-                                View Project!
-                            </Button>
+                            <Link to='/project-display'>
+                                <Button variant='solid' colorScheme="blue" bg="#05d5f4" color="white">
+                                    View Project!
+                                </Button>
+                            </Link>
                         </CardFooter>
                     </Stack>
                 </Card>
@@ -108,9 +119,11 @@ export default function FeaturedProjects() {
                             </Text>
                         </CardBody>
                         <CardFooter>
-                            <Button variant='solid' bg="#05d5f4" color="white">
-                                View Project!
-                            </Button>
+                            <Link to='/project-display'>
+                                <Button variant='solid' colorScheme="blue" bg="#05d5f4" color="white">
+                                    View Project!
+                                </Button>
+                            </Link>
                         </CardFooter>
                     </Stack>
                 </Card>
