@@ -31,6 +31,7 @@ query GetProject($id: ID, $name: String) {
       _id
       comment
       createdAt
+      username
     }
   }
 }
