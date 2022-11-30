@@ -7,6 +7,7 @@ import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
 import { QUERY_PROJECT, QUERY_CHECKOUT } from '../../utils/queries';
 import { ADD_COMMENT } from '../../utils/mutations';
 import { useParams } from 'react-router-dom';
+import Confetti from 'react-confetti';
 import { loadStripe } from '@stripe/stripe-js';
 import { useEffect } from 'react';
 
@@ -175,6 +176,7 @@ export default function ProjectDisplay() {
                         </DrawerBody>
                     </DrawerContent>
                 </Drawer>
+                {(data.getProject.fundingProgress >= data.getProject.fundingGoal) ? <Confetti recycle={false}/>: <div style={{display: "none"}}></div>}
             </>
         )
     }
