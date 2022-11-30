@@ -7,6 +7,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_PROJECT } from '../../utils/queries';
 import { ADD_COMMENT } from '../../utils/mutations';
 import { useParams } from 'react-router-dom';
+import Confetti from 'react-confetti';
 
 export default function ProjectDisplay() {
     const { projectId } = useParams();
@@ -143,6 +144,7 @@ export default function ProjectDisplay() {
                         </DrawerBody>
                     </DrawerContent>
                 </Drawer>
+                {(data.getProject.fundingProgress >= data.getProject.fundingGoal) ? <Confetti recycle={false}/>: <div style={{display: "none"}}></div>}
             </>
         )
     }
