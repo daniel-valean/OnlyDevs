@@ -17,74 +17,62 @@ const resolvers = {
             }
         },
 
-    // project: async (parent, { _id }) => {
-    //   return await Project.findById(_id).populate('category');
-    // },
-    // user: async (parent, args, context) => {
-    //   if (context.user) {
-    //     const user = await User.findById(context.user._id).populate({
-    //       path: 'orders.projects',
-    //       populate: 'category'
-    //     });
 
-    //     user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        checkout: async (parent, args, context) => {
+            const url = new URL(context.headers.referer).origin;
+            const line_items = [];
 
-    //     return user;
-    //   }
+            const project = await Project.findById(args._id).populate('user');
 
-    //   throw new AuthenticationError('Not logged in');
-    // },
-    // order: async (parent, { _id }, context) => {
-    //   if (context.user) {
-    //     const user = await User.findById(context.user._id).populate({
-    //       path: 'orders.projectss',
-    //       populate: 'category'
-    //     });
+            const stripeProject = await stripe.products.create({
+                name: project.title,
+                description: project.description,
+                images: [project.image]
+            })
 
-    //     return user.orders.id(_id);
-    //   }
+            const price = await stripe.prices.create({
+                product: stripeProject.id,
+                unit_amount: args.donationAmount * 100,
+                currency: 'usd',
+            });
 
-    //   throw new AuthenticationError('Not logged in');
-    // },
+            line_items.push({
+                price: price.id,
+                quantity: 1
+            });
+            
 
 
-    //     checkout: async (parent, args, context) => {
-    //         const url = new URL(context.headers.referer).origin;
-    //         const order = new Order({ projects: args.projects });
-    //         const line_items = [];
-      
-    //         const { projects } = await order.populate('projects');
-      
-    //         for (let i = 0; i < projects.length; i++) {
-    //         const project = await stripe.projects.create({
-    //             name: projects[i].name,
-    //             description: projects[i].description,
-    //             images: [`${url}/images/${projects[i].image}`]
-    //         });
-      
-    //         const price = await stripe.prices.create({
-    //             project: project.id,
-    //             unit_amount: projects[i].price * 100,
-    //             currency: 'usd',
-    //         });
-      
-    //         line_items.push({
-    //             price: price.id,
-    //             quantity: 1
-    //         });
-    //         }
-      
-    //         const session = await stripe.checkout.sessions.create({
-    //         payment_method_types: ['card'],
-    //         line_items,
-    //         mode: 'payment',
-    //         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-    //         cancel_url: `${url}/`
-    //         });
-      
-    //         return { session: session.id };
-    //       }
-      
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                line_items,
+                mode: 'payment',
+                success_url: `${url}/project-display/${args._id}`,
+                cancel_url: `${url}/project-display/${args._id}`
+            });
+            console.log(session)
+            if(session) {
+                if(context.user) { 
+                    
+                    await Project.findOneAndUpdate({_id: args._id},
+                        {
+                            $push: { comments: { comment: `Donated $${args.donationAmount}`, username: context.user.username } }
+                        }
+                        ) 
+                    await Project.findOneAndUpdate({_id: args._id}, { fundingProgress: project.fundingProgress + args.donationAmount })
+                } else {
+                    await Project.findOneAndUpdate({_id: args._id},
+                        {
+                            $push: { comments: { comment: `Donated $${args.donationAmount}`, username: 'Anonymous' } }
+                        }
+                        ) 
+                    await Project.findOneAndUpdate({_id: args._id}, { fundingProgress: project.fundingProgress + args.donationAmount })
+                }
+            }
+
+            return { session: session.id };
+        }
+
     },
 
 
@@ -101,13 +89,13 @@ const resolvers = {
         },
         addComment: async (parent, args, context) => {
             if (context.user) {
-                const updatedProject = await Project.findOneAndUpdate({_id: args.projectId}, {$push: {comments: {comment: args.comment, username: context.user.username}}}, {returnOriginal: false})
+                const updatedProject = await Project.findOneAndUpdate({ _id: args.projectId }, { $push: { comments: { comment: args.comment, username: context.user.username } } }, { returnOriginal: false })
                 return updatedProject;
             } else {
-                const updatedProject = await Project.findOneAndUpdate({_id: args.projectId}, {$push: {comments: {comment: args.comment, username: "Anonymous"}}}, {returnOriginal: false})
+                const updatedProject = await Project.findOneAndUpdate({ _id: args.projectId }, { $push: { comments: { comment: args.comment, username: "Anonymous" } } }, { returnOriginal: false })
                 return updatedProject;
             }
-            
+
         },
         login: async (parent, { username, password }) => {
             const user = await User.findOne({ username });
