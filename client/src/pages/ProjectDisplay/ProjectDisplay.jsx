@@ -1,6 +1,6 @@
 import './ProjectDisplay.css'
 import Header from '../../components/Header/Header'
-import { Card, CardBody, Heading, Button, Image, Progress, CircularProgress, CircularProgressLabel, Text, InputGroup, InputLeftElement, Input, Drawer, DrawerOverlay, DrawerCloseButton, DrawerHeader, DrawerBody, DrawerContent, useDisclosure, Avatar, Divider } from '@chakra-ui/react'
+import { Card, CardBody, Heading, Button, Image, Progress, CircularProgress, Text, InputGroup, InputLeftElement, Input, Drawer, DrawerOverlay, DrawerCloseButton, DrawerHeader, DrawerBody, DrawerContent, useDisclosure, Avatar, Divider } from '@chakra-ui/react'
 import { useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { useQuery, useMutation } from '@apollo/client';
@@ -52,7 +52,7 @@ export default function ProjectDisplay() {
     }
 
     if (loading) {
-        return <div className='project-display-wrapper'><h1>Loading</h1></div>
+        return <div className='project-display-wrapper'><CircularProgress isIndeterminate color='#05d5f4' /></div>
     } else {
         return (
             <>
@@ -67,9 +67,6 @@ export default function ProjectDisplay() {
                                     <Heading fontSize='5xl' margin="25px" color="#484a4a" size='lg'>Goal: ${data.getProject.fundingGoal}</Heading>
                                     <Heading fontSize='5xl' margin="25px" color="#484a4a" size='lg'>Raised: ${data.getProject.fundingProgress}</Heading>
                                     <Progress colorScheme='yellow' hasStripe margin="25px" height='32px' bg="white" value={(data.getProject.fundingProgress / data.getProject.fundingGoal) * 100} />
-                                    {/* <CircularProgress value={40} color='green.400'>
-                                        <CircularProgressLabel>40%</CircularProgressLabel>
-                                    </CircularProgress> */}
                                 </div>
                             </div>
                             <Heading fontSize='4xl' color="#484a4a" marginY="20px">Description</Heading>

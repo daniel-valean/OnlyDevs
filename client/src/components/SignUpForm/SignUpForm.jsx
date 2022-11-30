@@ -106,7 +106,7 @@ export default function SignUpForm() {
                     </InputRightElement>
                 </InputGroup>
 
-                <Button mt={4} colorScheme='teal' type='submit'>
+                <Button mt={4} colorScheme='blue' bg="#05d5f4" type='submit'>
                     Submit
                 </Button>
             </FormControl>

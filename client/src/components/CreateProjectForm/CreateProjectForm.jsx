@@ -84,7 +84,7 @@ export default function CreateProjectForm() {
                 <FormLabel>Impact</FormLabel>
                 <Textarea onChange={handleInputChange} value={purpose} rows='7' marginBottom="20px" type='text' name='purpose' placeholder='Briefly describe the impact community funding will have on your project' size='md'/>
 
-                <Button mt={4} colorScheme='teal' type='submit'>
+                <Button mt={4} colorScheme='blue' bg="#05d5f4" type='submit'>
                     Submit
                 </Button>
             </FormControl>
