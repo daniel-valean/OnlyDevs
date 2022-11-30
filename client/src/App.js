@@ -36,7 +36,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Homepage />} />
             <Route path='/forms/:formType' element={<Forms />} />
-            <Route path='/project-display' element={<ProjectDisplay />} />
+            <Route path='/project-display/:projectId' element={<ProjectDisplay />} />
             <Route path='/all-projects' element={<AllProjects/>} />
             <Route path='*' element={<h1>Wrong page!</h1>} />
           </Routes>

@@ -30,7 +30,7 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
 export const ADD_PROJECT = gql`
 mutation addProject($title: String, $description: String, $fundingGoal: Int, $image: String, $purpose: String) {
   addProject(title: $title, description: $description, fundingGoal: $fundingGoal, image: $image, purpose: $purpose) {
-    # _id
+    _id
     title
     description
     image
@@ -53,7 +53,7 @@ mutation addProject($title: String, $description: String, $fundingGoal: Int, $im
 `
 
 export const ADD_COMMENT = gql`
-mutation AddComment($comment: String, $projectId: ID) {
+mutation addComment($comment: String, $projectId: ID) {
   addComment(comment: $comment, projectId: $projectId) {
     _id
     title
@@ -72,6 +72,7 @@ mutation AddComment($comment: String, $projectId: ID) {
       _id
       comment
       createdAt
+      username
     }
   }
 }

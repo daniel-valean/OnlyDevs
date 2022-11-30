@@ -4,6 +4,7 @@ import {Card, CardBody, Image, Stack, Heading, Text, Divider, CardFooter, Button
 
 export default function AllProject() {
     return (
+        
         <>
             <Header></Header>
             <div className='all-project-display-wrapper'>

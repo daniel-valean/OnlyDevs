@@ -31,10 +31,14 @@
     display: inline;
 }
 
-.header-text {
+.header-text, .header-text-anchor {
     font-size: 1.2em;
     display: inline;
     padding: 0px 20px 0px 20px;
     text-decoration: none;
     color: #484a4a;
+}
+
+.header-text-anchor:hover {
+    cursor: pointer;
 }

@@ -24,6 +24,7 @@ type Comment {
     _id: ID
     comment: String
     createdAt: String
+    username: String
     # user: User
     # project: Project
 }
