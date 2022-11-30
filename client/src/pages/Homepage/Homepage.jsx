@@ -10,12 +10,12 @@ export default function Homepage() {
 
     return (
         <>
-            <Header/>
-            <HomeImage/>
-            <HowitWorks/>
-            <FeaturedProjects/>
-            <GetStarted/>
-            <Footer/>
+            <Header />
+            <HomeImage />
+            <HowitWorks />
+            <FeaturedProjects />
+            <GetStarted />
+            <Footer />
         </>
     )
 }

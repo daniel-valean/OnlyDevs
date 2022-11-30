@@ -1,0 +1,10 @@
+.all-project-display-wrapper {
+    background-color: var(--light);
+    min-height: 100vh;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 150px 0 50px 0px;
+}

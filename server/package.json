@@ -2,10 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
+  "proxy": "http://localhost:3000/",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "watch": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +20,7 @@
     "graphql": "^16.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.3",
+    "nodemon": "^2.0.20",
     "stripe": "^11.1.0"
   }
 }

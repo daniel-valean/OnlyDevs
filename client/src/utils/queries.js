@@ -31,6 +31,7 @@ query GetProject($id: ID, $name: String) {
       _id
       comment
       createdAt
+      username
     }
   }
 }
@@ -57,6 +58,13 @@ query GetProjects {
       comment
       createdAt
     }
+  }
+}
+`
+export const QUERY_CHECKOUT = gql`
+query getCheckout($_id: ID, $donationAmount: Int) {
+  checkout(_id: $_id, donationAmount: $donationAmount) {
+    session
   }
 }
 `;

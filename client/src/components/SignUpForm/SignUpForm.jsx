@@ -1,10 +1,19 @@
 import './SignUpForm.css'
-import { FormControl, FormLabel, Input, FormHelperText, Text, InputGroup, Button, InputRightElement} from '@chakra-ui/react'
-import {useState, useMutation} from 'react'
+import { FormControl, FormLabel, Input, FormHelperText, Text, InputGroup, Button, InputRightElement, useToast } from '@chakra-ui/react'
+import { useState, useEffect, useRef } from 'react'
+import { useMutation } from '@apollo/client'
 import { ADD_USER } from '../../utils/mutations'
+import Auth from '../../utils/auth';
+import { useParams, Link } from 'react-router-dom'
+import { useToastHook } from "../../utils/Toast";
 
 export default function SignUpForm() {
-    const [addUser, {error}] = useMutation(ADD_USER)
+    const toast = useToast();
+    const [state, newToast] = useToastHook();
+    const { formType } = useParams();
+    // const [toastRan, setToastRan] = useState(false)
+
+    const [addUser, { error }] = useMutation(ADD_USER)
     const [showPassword, setShowPassword] = useState(false)
     const handleShowPassword = () => setShowPassword(!showPassword)
 
@@ -15,6 +24,25 @@ export default function SignUpForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+
+    // if (!toastRan) {
+    //     setToastRan(true)
+    // }
+    useEffect(() => {
+        if (formType === "sign-up-from-create") {
+            newToast({ message: "Please sign-up to create a project", status: "warning", title: "Looks like you're not logged in"});
+            // toast({
+            //     title: "Looks like you're not logged in",
+            //     description: "Please sign-up to create a project",
+            //     status: 'warning',
+            //     duration: 3000,
+            //     isClosable: false,
+            //     position: "top"
+            // })
+        }
+    }, [])
+
+
 
     function handleInputChange(e) {
         const { name, value } = e.target;
@@ -38,8 +66,8 @@ export default function SignUpForm() {
         e.preventDefault();
         console.log(username, email, password, confirmPassword);
         //adding login logic
-        try{
-            const data = await addUser({
+        try {
+            const { data } = await addUser({
                 variables: {
                     username,
                     email,
@@ -47,7 +75,7 @@ export default function SignUpForm() {
                 }
             })
             Auth.login(data.addUser.token);
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
 
@@ -88,7 +116,7 @@ export default function SignUpForm() {
                 </InputGroup>
 
                 <FormLabel>Confirm Password</FormLabel>
-                <InputGroup size='md' marginBottom="20px">
+                <InputGroup size='md' marginBottom="10px">
                     <Input
                         onChange={handleInputChange}
                         name="confirmPassword"
@@ -104,9 +132,11 @@ export default function SignUpForm() {
                     </InputRightElement>
                 </InputGroup>
 
-                <Button mt={4} colorScheme='teal' type='submit'>
+                <Button marginBottom="20px" mt={4} colorScheme='blue' bg="#05d5f4" type='submit'>
                     Submit
                 </Button>
+
+                <FormLabel requiredIndicator>Already have an account? <Link style={{ textDecoration: "underline", color: "blue" }} to="/forms/log-in">Log in</Link> instead</FormLabel>
             </FormControl>
         </form>
     )
