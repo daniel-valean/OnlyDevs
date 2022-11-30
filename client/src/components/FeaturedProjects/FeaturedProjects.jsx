@@ -17,7 +17,7 @@ export default function FeaturedProjects() {
                 </div>
                 <div className='featured-cards-holder'>
                     {data.getProjects.slice(0, 2).map((project) => (
-                        <Card borderRadius="0" direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="40%">
+                        <Card borderRadius="0" key={project._id} direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="40%">
                             <Image objectFit='cover' maxW={{ base: '100%', sm: '200px' }} src={project.image} alt='Caffe Latte' />
                             <Stack>
                                 <CardBody>
@@ -39,7 +39,7 @@ export default function FeaturedProjects() {
                 </div>
                 <div className='featured-cards-holder'>
                     {data.getProjects.slice(2, 4).map((project) => (
-                        <Card borderRadius="0" direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="40%">
+                        <Card borderRadius="0" key={project._id} direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="40%">
                             <Image objectFit='cover' maxW={{ base: '100%', sm: '200px' }} src={project.image} alt='Caffe Latte' />
                             <Stack>
                                 <CardBody>
@@ -61,7 +61,7 @@ export default function FeaturedProjects() {
                 </div>
                 <div className='featured-cards-holder'>
                     {data.getProjects.slice(4, 6).map((project) => (
-                        <Card borderRadius="0" direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="40%">
+                        <Card borderRadius="0" key={project._id} direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' bg='#F8F9F8' width="40%">
                             <Image objectFit='cover' maxW={{ base: '100%', sm: '200px' }} src={project.image} alt='Caffe Latte' />
                             <Stack>
                                 <CardBody>

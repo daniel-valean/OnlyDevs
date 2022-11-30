@@ -16,7 +16,7 @@ export default function Header() {
     }
 
     function whereToGo() {
-        return (Auth.loggedIn()) ? ('/forms/create-project') : ('/forms/sign-up');
+        return (Auth.loggedIn()) ? ('/forms/create-project') : ('/forms/sign-up-from-create');
     }
 
     return (
