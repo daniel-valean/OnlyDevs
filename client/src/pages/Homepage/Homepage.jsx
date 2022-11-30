@@ -11,11 +11,6 @@ export default function Homepage() {
     return (
         <>
             <Header />
-            <form action="/create-checkout-session" method="POST">
-                <button type="submit">
-                    Checkout
-                </button>
-            </form>
             <HomeImage />
             <HowitWorks />
             <FeaturedProjects />
