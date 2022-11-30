@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { LOGIN } from '../../utils/mutations'
 import Auth from '../../utils/auth';
+import { Link } from 'react-router-dom';
 
 export default function LoginForm() {
     const [login, {error}] = useMutation(LOGIN)
@@ -54,7 +55,7 @@ export default function LoginForm() {
                 <Input onChange={handleInputChange} value={username} marginBottom="20px" type='text' name='username' placeholder='Enter Username'/>
 
                 <FormLabel>Password</FormLabel>
-                <InputGroup size='md' marginBottom="20px">
+                <InputGroup size='md' marginBottom="10px">
                     <Input
                         onChange={handleInputChange}
                         name = "password"
@@ -70,9 +71,11 @@ export default function LoginForm() {
                     </InputRightElement>
                 </InputGroup>
 
-                <Button mt={4} colorScheme='blue' bg="#05d5f4" type='submit'>
+                <Button mt={4} colorScheme='blue' bg="#05d5f4" type='submit' marginBottom="20px">
                     Submit
                 </Button>
+
+                <FormLabel requiredIndicator>Don't have an account yet? <Link style={{textDecoration: "underline", color: "blue"}} to="/forms/sign-up">Sign up</Link> instead</FormLabel>
             </FormControl>
         </form>
     )
