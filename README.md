@@ -34,9 +34,9 @@
 
 ## Installation
 
-* Clone the GitHub repo using the SSH key to your desired folder
-* Open the folder with the code and open terminal at the root level
-* Type ```npm i``` in terminal to install necessary packages for application to run
+* Clone the GitHub repo using the SSH key to your desired folder.
+* Open the folder with the code and open terminal at the root level.
+* Type ```npm i``` in terminal to install necessary packages for application to run.
 
 ----
 
