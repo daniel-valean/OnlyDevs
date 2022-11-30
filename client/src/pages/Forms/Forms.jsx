@@ -11,6 +11,7 @@ export default function Forms() {
     function renderForm() {
         switch(formType) {
             case "sign-up": return <SignUpForm/>;
+            case "sign-up-from-create": return <SignUpForm/>;
             case "log-in": return <LoginForm/>;
             case "create-project": return <CreateProjectForm/>;
         }
