@@ -54,6 +54,8 @@
 * As a user, I want to visit the webpage through my preferred browser.
 *
 *
+*
+*If the user would like to review a collaborator on a project, they may scroll down to the bottom of the page to review each collaborator's GitHub and associated links.
 
 ----
 
