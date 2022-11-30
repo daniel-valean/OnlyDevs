@@ -10,12 +10,17 @@ export default function Homepage() {
 
     return (
         <>
-            <Header/>
-            <HomeImage/>
-            <HowitWorks/>
-            <FeaturedProjects/>
-            <GetStarted/>
-            <Footer/>
+            <Header />
+            <form action="/create-checkout-session" method="POST">
+                <button type="submit">
+                    Checkout
+                </button>
+            </form>
+            <HomeImage />
+            <HowitWorks />
+            <FeaturedProjects />
+            <GetStarted />
+            <Footer />
         </>
     )
 }
