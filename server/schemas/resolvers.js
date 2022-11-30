@@ -48,42 +48,42 @@ const resolvers = {
     // },
 
 
-        // checkout: async (parent, args, context) => {
-        //     const url = new URL(context.headers.referer).origin;
-        //     const order = new Order({ projects: args.projects });
-        //     const line_items = [];
+    //     checkout: async (parent, args, context) => {
+    //         const url = new URL(context.headers.referer).origin;
+    //         const order = new Order({ projects: args.projects });
+    //         const line_items = [];
       
-        //     const { projects } = await order.populate('projects');
+    //         const { projects } = await order.populate('projects');
       
-        //     for (let i = 0; i < projects.length; i++) {
-        //     const project = await stripe.projects.create({
-        //         name: projects[i].name,
-        //         description: projects[i].description,
-        //         images: [`${url}/images/${projects[i].image}`]
-        //     });
+    //         for (let i = 0; i < projects.length; i++) {
+    //         const project = await stripe.projects.create({
+    //             name: projects[i].name,
+    //             description: projects[i].description,
+    //             images: [`${url}/images/${projects[i].image}`]
+    //         });
       
-        //     const price = await stripe.prices.create({
-        //         project: project.id,
-        //         unit_amount: projects[i].price * 100,
-        //         currency: 'usd',
-        //     });
+    //         const price = await stripe.prices.create({
+    //             project: project.id,
+    //             unit_amount: projects[i].price * 100,
+    //             currency: 'usd',
+    //         });
       
-        //     line_items.push({
-        //         price: price.id,
-        //         quantity: 1
-        //     });
-        //     }
+    //         line_items.push({
+    //             price: price.id,
+    //             quantity: 1
+    //         });
+    //         }
       
-        //     const session = await stripe.checkout.sessions.create({
-        //     payment_method_types: ['card'],
-        //     line_items,
-        //     mode: 'payment',
-        //     success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        //     cancel_url: `${url}/`
-        //     });
+    //         const session = await stripe.checkout.sessions.create({
+    //         payment_method_types: ['card'],
+    //         line_items,
+    //         mode: 'payment',
+    //         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+    //         cancel_url: `${url}/`
+    //         });
       
-        //     return { session: session.id };
-        //   }
+    //         return { session: session.id };
+    //       }
       
     },
 
@@ -96,15 +96,18 @@ const resolvers = {
             return { token, user };
         },
         addProject: async (parent, args, context) => {
-            console.log(context)
-            console.log('word')
             const addProject = await Project.create({ ...args, user: context.user._id })
             return addProject
         },
-        addComment: async (parent, args) => {
-            const updatedProject = await Project.findOneAndUpdate({_id: args.projectId}, {$push: {comments: {comment: args.comment}}}, {returnOriginal: false})
+        addComment: async (parent, args, context) => {
+            if (context.user) {
+                const updatedProject = await Project.findOneAndUpdate({_id: args.projectId}, {$push: {comments: {comment: args.comment, username: context.user.username}}}, {returnOriginal: false})
+                return updatedProject;
+            } else {
+                const updatedProject = await Project.findOneAndUpdate({_id: args.projectId}, {$push: {comments: {comment: args.comment, username: "Anonymous"}}}, {returnOriginal: false})
+                return updatedProject;
+            }
             
-            return updatedProject;
         },
         login: async (parent, { username, password }) => {
             const user = await User.findOne({ username });
