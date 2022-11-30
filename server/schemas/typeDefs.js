@@ -29,6 +29,10 @@ type Comment {
     # project: Project
 }
 
+type Checkout {
+    session: ID
+  }
+
 type Auth {
     token: ID
     user: User
@@ -38,6 +42,7 @@ type Query {
     getUser: User
     getProject(_id: ID, name: String): Project
     getProjects: [Project]
+    checkout(_id: ID, donationAmount: Int): Checkout
 }
 
 type Mutation {

@@ -3,12 +3,27 @@ import Header from '../../components/Header/Header'
 import { Card, CardBody, Heading, Button, Image, Progress, CircularProgress, Text, InputGroup, InputLeftElement, Input, Drawer, DrawerOverlay, DrawerCloseButton, DrawerHeader, DrawerBody, DrawerContent, useDisclosure, Avatar, Divider } from '@chakra-ui/react'
 import { useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
-import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_PROJECT } from '../../utils/queries';
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
+import { QUERY_PROJECT, QUERY_CHECKOUT } from '../../utils/queries';
 import { ADD_COMMENT } from '../../utils/mutations';
 import { useParams } from 'react-router-dom';
+import { loadStripe } from '@stripe/stripe-js';
+import { useEffect } from 'react';
+
+// const avatarArray = [red, blue, green, purple, yellow]; 
+const stripePromise = loadStripe('pk_test_51M9D8lCh7zP8YFj8xPKACfk85tR6oJn74U7qhvazVQxsWoym6FPYMovvSPSTWFQbWRZaDgs0Z6ejxmGWyzyhRK9E00R6xLb6rT')
+
 
 export default function ProjectDisplay() {
+    const [getCheckout, { data: checkoutData }] = useLazyQuery(QUERY_CHECKOUT)
+
+    useEffect(() => {
+        if (checkoutData) {
+            stripePromise.then((res) => {
+                res.redirectToCheckout({ sessionId: checkoutData.checkout.session });
+            });
+        }
+    }, [checkoutData])
     const { projectId } = useParams();
     const [addComment, { error }] = useMutation(ADD_COMMENT)
 
@@ -51,6 +66,22 @@ export default function ProjectDisplay() {
         }
     }
 
+    async function handleDonationSubmit(e) {
+        e.preventDefault(); 
+        console.log('test')
+        console.log(data.getProject)
+        try{
+            await getCheckout({
+                variables: {
+                    _id: data.getProject._id,
+                    donationAmount: parseInt(donationAmount)
+                }
+            })
+        } catch(err){
+            console.error(err)
+        }
+    }
+
     if (loading) {
         return <div className='project-display-wrapper'><CircularProgress isIndeterminate color='#05d5f4' /></div>
     } else {
@@ -78,15 +109,16 @@ export default function ProjectDisplay() {
                                 {data.getProject.purpose}
                             </Text>
                             <div style={{ marginTop: "20px", display: "flex", justifyContent: "space-between" }}>
-                                <form style={{ display: "flex" }}>
+                                <form onSubmit={handleDonationSubmit} style={{ display: "flex" }}>
                                     <InputGroup width="100%" marginRight="10px">
                                         <InputLeftElement pointerEvents='none' color='gray.300' fontSize='1.2em' children='$' />
                                         <Input onChange={handleInputChange} bg="white" type='number' marginBottom="20px" value={donationAmount} placeholder='Enter amount' name='donationAmount' />
                                     </InputGroup>
-                                    <Button align="center" fontSize='2xl' variant='solid' colorScheme="blue" bg="#05d5f4" color="white" width="100%">
+                                    <Button type='submit' align="center" fontSize='2xl' variant='solid' colorScheme="blue" bg="#05d5f4" color="white" width="100%">
                                         Donate
                                     </Button>
                                 </form>
+
                                 <Button align="center" fontSize='2xl' variant='solid' colorScheme="blue" bg="#05d5f4" color="white" width="12%" onClick={() => handleClick()}>
                                     Activity
                                 </Button>
@@ -129,7 +161,7 @@ export default function ProjectDisplay() {
                                 <div key={element._id}>
                                     <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
                                         <Avatar bg='red.500' marginRight="10px" icon={<AiOutlineUser fontSize='1.5rem' />} />
-                                        <p style={{ fontSize: "1.5em" }}><span style={{ fontWeight: "bolder" }}>{(element.username)?(element.username):"Anonymous"}:</span> <span style={/^Donated\s\$/.test(element.comment) ? { fontStyle: "italic", color: "green" } : {}}>{element.comment}</span></p>
+                                        <p style={{ fontSize: "1.5em" }}><span style={{ fontWeight: "bolder" }}>{(element.username) ? (element.username) : "Anonymous"}:</span> <span style={/^Donated\s\$/.test(element.comment) ? { fontStyle: "italic", color: "green" } : {}}>{element.comment}</span></p>
                                     </div>
                                     <Divider marginBottom="20px" />
                                 </div>
