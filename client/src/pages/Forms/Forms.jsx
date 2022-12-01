@@ -10,10 +10,10 @@ export default function Forms() {
 
     function renderForm() {
         switch(formType) {
-            case "sign-up": return <SignUpForm/>;
-            case "sign-up-from-create": return <SignUpForm/>;
-            case "log-in": return <LoginForm/>;
-            case "create-project": return <CreateProjectForm/>;
+            case 'sign-up': return <SignUpForm/>;
+            case 'sign-up-from-create': return <SignUpForm/>;
+            case 'log-in': return <LoginForm/>;
+            case 'create-project': return <CreateProjectForm/>;
         }
     }
 
@@ -24,8 +24,8 @@ export default function Forms() {
             </div>
             <div className='form-page-logo-wrapper'>
                 <div className='home-image-text'>
-                    <img className="big-logo" src={Logo}/>
-                    <p style={{margin: 0, fontSize: ".55em"}}>Get Your Project<br/>Started Here</p>
+                    <img className='big-logo' src={Logo}/>
+                    <p style={{margin: 0, fontSize: '.55em'}}>Get Your Project<br/>Started Here</p>
                 </div>
             </div>
         </div>
