@@ -98,7 +98,7 @@ export default function ProjectDisplay() {
                                 <div className='goals'>
                                     <Heading fontSize='5xl' margin="25px" color="#484a4a" size='lg'>Goal: ${data.getProject.fundingGoal}</Heading>
                                     <Heading fontSize='5xl' margin="25px" color="#484a4a" size='lg'>Raised: ${data.getProject.fundingProgress}</Heading>
-                                    <Progress colorScheme='yellow' hasStripe margin="25px" height='32px' bg="white" value={(data.getProject.fundingProgress / data.getProject.fundingGoal) * 100} />
+                                    <Progress colorScheme={(data.getProject.fundingProgress >= data.getProject.fundingGoal) ? "green" : "yellow"} hasStripe margin="25px" height='32px' bg="white" value={(data.getProject.fundingProgress / data.getProject.fundingGoal) * 100} />
                                 </div>
                             </div>
                             <Heading fontSize='4xl' color="#484a4a" marginY="20px">Description</Heading>
@@ -133,30 +133,6 @@ export default function ProjectDisplay() {
                         <DrawerCloseButton />
                         <DrawerHeader fontSize="5xl" marginBottom="20px">Activity</DrawerHeader>
                         <DrawerBody>
-                            <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
-                                <Avatar bg='red.500' marginRight="10px" icon={<AiOutlineUser fontSize='1.5rem' />} />
-                                <p style={{ fontSize: "1.5em" }}><span style={{ fontWeight: "bolder" }}>Cole:</span> Cool Project Bro!</p>
-                            </div>
-                            <Divider marginBottom="20px" />
-                            <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
-                                <Avatar bg='red.500' marginRight="10px" icon={<AiOutlineUser fontSize='1.5rem' />} />
-                                <p style={{ fontSize: "1.5em" }}><span style={{ fontWeight: "bolder" }}>Miguel:</span> How is this cool? This is wack</p>
-                            </div>
-                            <Divider marginBottom="20px" />
-                            <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
-                                <Avatar bg='red.500' marginRight="10px" icon={<AiOutlineUser fontSize='1.5rem' />} />
-                                <p style={{ fontSize: "1.5em" }}><span style={{ fontWeight: "bolder" }}>Danny:</span> I like it!</p>
-                            </div>
-                            <Divider marginBottom="20px" />
-                            <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
-                                <Avatar bg='red.500' marginRight="10px" icon={<AiOutlineUser fontSize='1.5rem' />} />
-                                <p style={{ fontSize: "1.5em" }}><span style={{ fontWeight: "bolder" }}>Toacin:</span> The mavs are trash!</p>
-                            </div>
-                            <Divider marginBottom="20px" />
-                            <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
-                                <Avatar bg='red.500' marginRight="10px" icon={<AiOutlineUser fontSize='1.5rem' />} />
-                                <p style={{ fontSize: "1.5em" }}><span style={{ fontWeight: "bolder" }}>Cole:</span> <span style={{ fontStyle: "italic", color: "green" }}>donated $100</span></p>
-                            </div>
                             <Divider marginBottom="20px" />
                             {data.getProject.comments.map((element) => (
                                 <div key={element._id}>
