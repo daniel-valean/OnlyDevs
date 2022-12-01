@@ -47,10 +47,9 @@ const resolvers = {
                 payment_method_types: ['card'],
                 line_items,
                 mode: 'payment',
-                success_url: `${url}/project-display/${args._id}`,
+                success_url: `${url}/donation-processed/${args._id}`,
                 cancel_url: `${url}/project-display/${args._id}`
             });
-            console.log(session)
             if(session) {
                 if(context.user) { 
                     
@@ -92,7 +91,7 @@ const resolvers = {
                 const updatedProject = await Project.findOneAndUpdate({ _id: args.projectId }, { $push: { comments: { comment: args.comment, username: context.user.username } } }, { returnOriginal: false })
                 return updatedProject;
             } else {
-                const updatedProject = await Project.findOneAndUpdate({ _id: args.projectId }, { $push: { comments: { comment: args.comment, username: "Anonymous" } } }, { returnOriginal: false })
+                const updatedProject = await Project.findOneAndUpdate({ _id: args.projectId }, { $push: { comments: { comment: args.comment, username: 'Anonymous' } } }, { returnOriginal: false })
                 return updatedProject;
             }
 

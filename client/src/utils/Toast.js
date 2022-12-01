@@ -1,5 +1,5 @@
-import { useToast } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useToast } from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
 
 export function useToastHook() {
     const [state, setState] = useState(undefined);
@@ -14,7 +14,7 @@ export function useToastHook() {
                 description: message,
                 status: status,
                 duration: 3000,
-                position: "top",
+                position: 'top',
                 isClosable: true,
             });
         }
