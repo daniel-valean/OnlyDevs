@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
 import Account from './pages/Account/Account';
+import DonationProcessed from './pages/DonationProcessed/DonationProcessed';
 
 
 
@@ -42,6 +43,7 @@ function App() {
             <Route path='/project-display/:projectId' element={<ProjectDisplay />} />
             <Route path='/all-projects' element={<AllProjects/>} />
             <Route path='/account' element={<Account/>} />
+            <Route path='/donation-processed/:projectId' element={<DonationProcessed/>} />
             <Route path='*' element={<h1>Wrong page!</h1>} />
           </Routes>
         </ChakraProvider>

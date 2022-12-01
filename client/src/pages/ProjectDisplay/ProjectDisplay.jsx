@@ -24,15 +24,15 @@ const stripePromise = loadStripe('pk_test_51M9D8lCh7zP8YFj8xPKACfk85tR6oJn74U7qh
 export default function ProjectDisplay() {
     const [soundValue, setSound] = useState(0);
 
-    
+
     function playSound() {
         // new Audio(demo).play()
-        const audio = new Audio(progressFundingReached) 
+        const audio = new Audio(progressFundingReached)
         audio.volume = .2
         audio.play()
     }
     const [getCheckout, { data: checkoutData }] = useLazyQuery(QUERY_CHECKOUT)
-    
+
     useEffect(() => {
         if (checkoutData) {
             stripePromise.then((res) => {
@@ -42,15 +42,15 @@ export default function ProjectDisplay() {
     }, [checkoutData])
     const { projectId } = useParams();
     const [addComment, { error }] = useMutation(ADD_COMMENT)
-    
+
     const { data, loading } = useQuery(QUERY_PROJECT, {
         variables: {
             id: projectId
         }
     });
     useEffect(() => {
-        if(!loading) {
-            if(data.getProject.fundingProgress >= data.getProject.fundingGoal) {
+        if (!loading) {
+            if (data.getProject.fundingProgress >= data.getProject.fundingGoal) {
                 playSound();
             }
         }
@@ -64,10 +64,10 @@ export default function ProjectDisplay() {
             case 'donationAmount':
                 setDonationAmount(value);
                 break;
-                case 'userComment':
-                    setUserComment(value);
-                    break;
-                }
+            case 'userComment':
+                setUserComment(value);
+                break;
+        }
     }
     const { isOpen, onOpen, onClose } = useDisclosure()
     const handleClick = () => {
@@ -90,15 +90,15 @@ export default function ProjectDisplay() {
     }
 
     async function handleDonationSubmit(e) {
-        e.preventDefault(); 
-        try{
+        e.preventDefault();
+        try {
             await getCheckout({
                 variables: {
                     _id: data.getProject._id,
                     donationAmount: parseInt(donationAmount)
                 }
             })
-        } catch(err){
+        } catch (err) {
             console.error(err)
         }
     }
@@ -172,7 +172,7 @@ export default function ProjectDisplay() {
                         </DrawerBody>
                     </DrawerContent>
                 </Drawer>
-                {(data.getProject.fundingProgress >= data.getProject.fundingGoal) ? <Confetti recycle={false}/>: <div style={{display: 'none'}}></div>}
+                {(data.getProject.fundingProgress >= data.getProject.fundingGoal) ? <Confetti recycle={false} /> : <div style={{ display: 'none' }}></div>}
             </>
         )
     }
