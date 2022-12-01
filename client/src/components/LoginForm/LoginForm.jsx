@@ -22,7 +22,7 @@ export default function LoginForm() {
             case "username":
                 setUsername(value);
                 break;
-            case "password":
+            case 'password':
                 setPassword(value);
                 break;
         }
@@ -30,8 +30,6 @@ export default function LoginForm() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log(username, password);
-
         //added logic for login
         try {
             const { data } = await login({

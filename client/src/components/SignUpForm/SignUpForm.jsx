@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client'
 import { ADD_USER } from '../../utils/mutations'
 import Auth from '../../utils/auth';
 import { useParams, Link } from 'react-router-dom'
-import { useToastHook } from "../../utils/Toast";
+import { useToastHook } from '../../utils/Toast';
 
 export default function SignUpForm() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -22,10 +22,10 @@ export default function SignUpForm() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const handleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword)
 
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     useEffect(() => {
         if (formType === "sign-up-from-create") {
@@ -36,13 +36,13 @@ export default function SignUpForm() {
     function handleInputChange(e) {
         const { name, value } = e.target;
         switch (name) {
-            case "username":
+            case 'username':
                 setUsername(value);
                 break;
-            case "email":
+            case 'email':
                 setEmail(value);
                 break;
-            case "password":
+            case 'password':
                 setPassword(value);
                 break;
             default:
@@ -53,7 +53,6 @@ export default function SignUpForm() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log(username, email, password, confirmPassword);
         //adding login logic
         if (password !== confirmPassword) {
             // onOpen();
@@ -74,10 +73,10 @@ export default function SignUpForm() {
             onOpen()
         }
 
-        setUsername("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
+        setUsername('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
     }
 
 

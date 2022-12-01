@@ -17,7 +17,7 @@ export default function AllProject() {
             <>
                 <Header></Header>
                 <div className='all-project-display-wrapper'>
-                    <Heading fontSize='6xl' color="#484a4a" marginBottom="50px">Projects</Heading>
+                    <Heading fontSize='6xl' color='#484a4a' marginBottom='50px'>Projects</Heading>
                     <SimpleGrid columns={4} spacing={10}>
                         {data.getProjects.map((project) => (
                             <Card bg="white" key={project._id} maxW='xs'>
@@ -37,7 +37,7 @@ export default function AllProject() {
                                     <ButtonGroup spacing='2' display="flex" alignContent="center" width="100%">
                                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
                                             <Link to={`/project-display/${project._id}`}>
-                                                <Button variant='solid' colorScheme="blue" bg="#05d5f4" color="white">
+                                                <Button variant='solid' colorScheme='blue' bg='#05d5f4' color='white'>
                                                     View
                                                 </Button>
                                             </Link>
