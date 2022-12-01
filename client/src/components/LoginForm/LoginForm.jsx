@@ -11,16 +11,16 @@ export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false)
     const handleShowPassword = () => setShowPassword(!showPassword)
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     function handleInputChange(e) {
         const {name, value} = e.target;
         switch(name) {
-            case "username":
+            case 'username':
                 setUsername(value);
                 break;
-            case "password":
+            case 'password':
                 setPassword(value);
                 break;
         }
@@ -28,7 +28,6 @@ export default function LoginForm() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log(username, password);
         //added logic for login
         try{
             const {data} = await login({
@@ -47,18 +46,18 @@ export default function LoginForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit} style={{width: "50%"}}>
-            <FormControl bg='#F8F9F8' borderRadius='4' width="100%" padding="30" isRequired>
-                <Text fontSize='4xl' marginBottom="20px">Log In</Text>
+        <form onSubmit={handleSubmit} style={{width: '50%'}}>
+            <FormControl bg='#F8F9F8' borderRadius='4' width='100%' padding='30' isRequired>
+                <Text fontSize='4xl' marginBottom='20px'>Log In</Text>
 
                 <FormLabel>Username</FormLabel>
-                <Input onChange={handleInputChange} value={username} marginBottom="20px" type='text' name='username' placeholder='Enter Username'/>
+                <Input onChange={handleInputChange} value={username} marginBottom='20px' type='text' name='username' placeholder='Enter Username'/>
 
                 <FormLabel>Password</FormLabel>
-                <InputGroup size='md' marginBottom="10px">
+                <InputGroup size='md' marginBottom='10px'>
                     <Input
                         onChange={handleInputChange}
-                        name = "password"
+                        name = 'password'
                         value = {password}
                         pr='4.5rem'
                         type={showPassword ? 'text' : 'password'}
@@ -71,11 +70,11 @@ export default function LoginForm() {
                     </InputRightElement>
                 </InputGroup>
 
-                <Button mt={4} colorScheme='blue' bg="#05d5f4" type='submit' marginBottom="20px">
+                <Button mt={4} colorScheme='blue' bg='#05d5f4' type='submit' marginBottom='20px'>
                     Submit
                 </Button>
 
-                <FormLabel requiredIndicator>Don't have an account yet? <Link style={{textDecoration: "underline", color: "blue"}} to="/forms/sign-up">Sign up</Link> instead</FormLabel>
+                <FormLabel requiredIndicator>Don't have an account yet? <Link style={{textDecoration: 'underline', color: 'blue'}} to='/forms/sign-up'>Sign up</Link> instead</FormLabel>
             </FormControl>
         </form>
     )

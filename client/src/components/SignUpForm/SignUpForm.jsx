@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client'
 import { ADD_USER } from '../../utils/mutations'
 import Auth from '../../utils/auth';
 import { useParams, Link } from 'react-router-dom'
-import { useToastHook } from "../../utils/Toast";
+import { useToastHook } from '../../utils/Toast';
 
 export default function SignUpForm() {
     const toast = useToast();
@@ -20,24 +20,24 @@ export default function SignUpForm() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const handleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword)
 
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     // if (!toastRan) {
     //     setToastRan(true)
     // }
     useEffect(() => {
-        if (formType === "sign-up-from-create") {
-            newToast({ message: "Please sign-up to create a project", status: "warning", title: "Looks like you're not logged in"});
+        if (formType === 'sign-up-from-create') {
+            newToast({ message: 'Please sign-up to create a project', status: 'warning', title: "Looks like you're not logged in"});
             // toast({
-            //     title: "Looks like you're not logged in",
-            //     description: "Please sign-up to create a project",
+            //     title: 'Looks like you're not logged in',
+            //     description: 'Please sign-up to create a project',
             //     status: 'warning',
             //     duration: 3000,
             //     isClosable: false,
-            //     position: "top"
+            //     position: 'top'
             // })
         }
     }, [])
@@ -47,13 +47,13 @@ export default function SignUpForm() {
     function handleInputChange(e) {
         const { name, value } = e.target;
         switch (name) {
-            case "username":
+            case 'username':
                 setUsername(value);
                 break;
-            case "email":
+            case 'email':
                 setEmail(value);
                 break;
-            case "password":
+            case 'password':
                 setPassword(value);
                 break;
             default:
@@ -64,7 +64,6 @@ export default function SignUpForm() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log(username, email, password, confirmPassword);
         //adding login logic
         try {
             const { data } = await addUser({
@@ -79,30 +78,30 @@ export default function SignUpForm() {
             console.log(error)
         }
 
-        setUsername("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
+        setUsername('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
     }
 
 
     return (
-        <form onSubmit={handleSubmit} style={{ width: "50%" }}>
-            <FormControl bg='#F8F9F8' borderRadius='4' width="100%" padding="30" isRequired>
-                <Text fontSize='4xl' marginBottom="20px">Sign-Up!</Text>
+        <form onSubmit={handleSubmit} style={{ width: '50%' }}>
+            <FormControl bg='#F8F9F8' borderRadius='4' width='100%' padding='30' isRequired>
+                <Text fontSize='4xl' marginBottom='20px'>Sign-Up!</Text>
 
                 <FormLabel>Username</FormLabel>
-                <Input onChange={handleInputChange} value={username} marginBottom="20px" type='text' name='username' placeholder='Enter Username' />
+                <Input onChange={handleInputChange} value={username} marginBottom='20px' type='text' name='username' placeholder='Enter Username' />
 
                 <FormLabel>Email Address</FormLabel>
                 <Input onChange={handleInputChange} value={email} type='email' name='email' placeholder='Enter Email' />
-                <FormHelperText marginBottom="20px">We'll never share your email.</FormHelperText>
+                <FormHelperText marginBottom='20px'>We'll never share your email.</FormHelperText>
 
                 <FormLabel>Password</FormLabel>
-                <InputGroup size='md' marginBottom="20px">
+                <InputGroup size='md' marginBottom='20px'>
                     <Input
                         onChange={handleInputChange}
-                        name="password"
+                        name='password'
                         value={password}
                         pr='4.5rem'
                         type={showPassword ? 'text' : 'password'}
@@ -116,10 +115,10 @@ export default function SignUpForm() {
                 </InputGroup>
 
                 <FormLabel>Confirm Password</FormLabel>
-                <InputGroup size='md' marginBottom="10px">
+                <InputGroup size='md' marginBottom='10px'>
                     <Input
                         onChange={handleInputChange}
-                        name="confirmPassword"
+                        name='confirmPassword'
                         value={confirmPassword}
                         pr='4.5rem'
                         type={showConfirmPassword ? 'text' : 'password'}
@@ -132,11 +131,11 @@ export default function SignUpForm() {
                     </InputRightElement>
                 </InputGroup>
 
-                <Button marginBottom="20px" mt={4} colorScheme='blue' bg="#05d5f4" type='submit'>
+                <Button marginBottom='20px' mt={4} colorScheme='blue' bg='#05d5f4' type='submit'>
                     Submit
                 </Button>
 
-                <FormLabel requiredIndicator>Already have an account? <Link style={{ textDecoration: "underline", color: "blue" }} to="/forms/log-in">Log in</Link> instead</FormLabel>
+                <FormLabel requiredIndicator>Already have an account? <Link style={{ textDecoration: 'underline', color: 'blue' }} to='/forms/log-in'>Log in</Link> instead</FormLabel>
             </FormControl>
         </form>
     )
