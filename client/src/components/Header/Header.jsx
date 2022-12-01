@@ -29,8 +29,8 @@ export default function Header() {
                 <Link className='logo' to='/'><img style={{height: '100%'}} src={Logo}/></Link>
                 {Auth.loggedIn() ? 
                     <div>
-                        <p className='header-text-anchor' onClick={()=>Auth.logout()}>Log Out</p>
-                        <Link className='header-text' to='/'>Account</Link>
+                        <p className="header-text-anchor" onClick={()=>Auth.logout()}>Log Out</p>
+                        <Link className="header-text" to="/account">Account</Link>
                     </div> :
                     <div>
                         <Link className='header-text' to='/forms/log-in'>Log In</Link>
