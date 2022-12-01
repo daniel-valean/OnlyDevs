@@ -1,6 +1,6 @@
 import './SignUpForm.css'
-import { FormControl, FormLabel, Input, FormHelperText, Text, InputGroup, Button, InputRightElement, useToast, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter} from '@chakra-ui/react'
-import { useState, useEffect, useRef } from 'react'
+import { FormControl, FormLabel, Input, FormHelperText, Text, InputGroup, Button, InputRightElement, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, FormErrorMessage} from '@chakra-ui/react'
+import { useState, useEffect } from 'react'
 import { useMutation } from '@apollo/client'
 import { ADD_USER } from '../../utils/mutations'
 import Auth from '../../utils/auth';
@@ -9,6 +9,7 @@ import { useToastHook } from "../../utils/Toast";
 
 export default function SignUpForm() {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [isError, setIsError] = useState(false)
 
     const [state, newToast] = useToastHook();
     const { formType } = useParams();
@@ -55,7 +56,8 @@ export default function SignUpForm() {
         console.log(username, email, password, confirmPassword);
         //adding login logic
         if (password !== confirmPassword) {
-            onOpen();
+            // onOpen();
+            setIsError(true)
             return;
         }
         try {
@@ -69,6 +71,7 @@ export default function SignUpForm() {
             Auth.login(data.addUser.token);
         } catch (error) {
             console.log(error)
+            onOpen()
         }
 
         setUsername("");
@@ -91,39 +94,46 @@ export default function SignUpForm() {
                     <Input onChange={handleInputChange} value={email} type='email' name='email' placeholder='Enter Email' />
                     <FormHelperText marginBottom="20px">We'll never share your email.</FormHelperText>
 
-                    <FormLabel>Password</FormLabel>
-                    <InputGroup size='md' marginBottom="20px">
-                        <Input
-                            onChange={handleInputChange}
-                            name="password"
-                            value={password}
-                            pr='4.5rem'
-                            type={showPassword ? 'text' : 'password'}
-                            placeholder='Enter Password'
-                        />
-                        <InputRightElement width='4.5rem'>
-                            <Button h='1.75rem' size='sm' onClick={handleShowPassword}>
-                                {showPassword ? 'Hide' : 'Show'}
-                            </Button>
-                        </InputRightElement>
-                    </InputGroup>
+                    <FormControl isInvalid={isError}>
+                        <FormLabel>Password</FormLabel>
+                        <InputGroup size='md' marginBottom="20px">
+                            <Input
+                                onChange={handleInputChange}
+                                name="password"
+                                value={password}
+                                pr='4.5rem'
+                                type={showPassword ? 'text' : 'password'}
+                                placeholder='Enter Password'
+                            />
+                            <InputRightElement width='4.5rem'>
+                                <Button h='1.75rem' size='sm' onClick={handleShowPassword}>
+                                    {showPassword ? 'Hide' : 'Show'}
+                                </Button>
+                            </InputRightElement>
+                        </InputGroup>
 
-                    <FormLabel>Confirm Password</FormLabel>
-                    <InputGroup size='md' marginBottom="10px">
-                        <Input
-                            onChange={handleInputChange}
-                            name="confirmPassword"
-                            value={confirmPassword}
-                            pr='4.5rem'
-                            type={showConfirmPassword ? 'text' : 'password'}
-                            placeholder='Re-enter Password'
-                        />
-                        <InputRightElement width='4.5rem'>
-                            <Button h='1.75rem' size='sm' onClick={handleShowConfirmPassword}>
-                                {showConfirmPassword ? 'Hide' : 'Show'}
-                            </Button>
-                        </InputRightElement>
-                    </InputGroup>
+                        <FormLabel>Confirm Password</FormLabel>
+                        <InputGroup size='md' marginBottom="10px">
+                            <Input
+                                onChange={handleInputChange}
+                                name="confirmPassword"
+                                value={confirmPassword}
+                                pr='4.5rem'
+                                type={showConfirmPassword ? 'text' : 'password'}
+                                placeholder='Re-enter Password'
+                            />
+                            <InputRightElement width='4.5rem'>
+                                <Button h='1.75rem' size='sm' onClick={handleShowConfirmPassword}>
+                                    {showConfirmPassword ? 'Hide' : 'Show'}
+                                </Button>
+                            </InputRightElement>
+                        </InputGroup>
+                        {isError ? (
+                            <FormErrorMessage>Passwords Must Match</FormErrorMessage>
+                        ) : (
+                            <></>
+                        )}
+                    </FormControl>
 
                     <Button marginBottom="20px" mt={4} colorScheme='blue' bg="#05d5f4" type='submit'>
                         Submit
@@ -135,10 +145,10 @@ export default function SignUpForm() {
             <Modal onClose={onClose} isOpen={isOpen} isCentered>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Passwords Don't Match</ModalHeader>
+                    <ModalHeader>Something Went Wrong...</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        Please ensure that passwords match.
+                        Please Try Again Later
                     </ModalBody>
                     <ModalFooter>
                         <Button onClick={onClose}>Close</Button>

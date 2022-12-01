@@ -1,5 +1,5 @@
 import './LoginForm.css'
-import { FormControl, FormLabel, Input, Text, InputGroup, Button, InputRightElement, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter } from '@chakra-ui/react'
+import { FormControl, FormLabel, Input, Text, InputGroup, Button, InputRightElement, useDisclosure, FormErrorMessage } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { LOGIN } from '../../utils/mutations'
@@ -7,11 +7,11 @@ import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 
 export default function LoginForm() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-
     const [login, { error }] = useMutation(LOGIN)
     const [showPassword, setShowPassword] = useState(false)
     const handleShowPassword = () => setShowPassword(!showPassword)
+
+    const [isError, setIsError] = useState(false)
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -31,6 +31,7 @@ export default function LoginForm() {
     async function handleSubmit(e) {
         e.preventDefault();
         console.log(username, password);
+
         //added logic for login
         try {
             const { data } = await login({
@@ -45,14 +46,14 @@ export default function LoginForm() {
 
         } catch (error) {
             console.log(error)
-            onOpen();
+            setIsError(true)
         }
     }
 
     return (
         <>
             <form onSubmit={handleSubmit} style={{ width: "50%" }}>
-                <FormControl bg='#F8F9F8' borderRadius='4' width="100%" padding="30" isRequired>
+                <FormControl bg='#F8F9F8' borderRadius='4' width="100%" padding="30" isRequired isInvalid={isError}>
                     <Text fontSize='4xl' marginBottom="20px">Log In</Text>
 
                     <FormLabel>Username</FormLabel>
@@ -74,27 +75,20 @@ export default function LoginForm() {
                             </Button>
                         </InputRightElement>
                     </InputGroup>
+                    {isError ? (
+                        <FormErrorMessage>Invalid Credentials</FormErrorMessage>
+                    ) : (
+                        <></>
+                    )}
 
                     <Button mt={4} colorScheme='blue' bg="#05d5f4" type='submit' marginBottom="20px">
                         Submit
                     </Button>
 
+
                     <FormLabel requiredIndicator>Don't have an account yet? <Link style={{ textDecoration: "underline", color: "blue" }} to="/forms/sign-up">Sign up</Link> instead</FormLabel>
                 </FormControl>
             </form>
-            <Modal onClose={onClose} isOpen={isOpen} isCentered>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Invalid Credentials</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                        Please Try Again
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button onClick={onClose}>Close</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
         </>
     )
 }
