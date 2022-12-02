@@ -4,7 +4,7 @@ import Forms from './pages/Forms/Forms.jsx'
 import ProjectDisplay from './pages/ProjectDisplay/ProjectDisplay'
 import AllProjects from './pages/AllProjects/AllProjects'
 import { ChakraProvider } from '@chakra-ui/react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, HashRouter } from 'react-router-dom'
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
 import Account from './pages/Account/Account';
@@ -35,7 +35,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
+      <HashRouter>
         <ChakraProvider>
           <Routes>
             <Route path='/' element={<Homepage />} />
@@ -47,7 +47,7 @@ function App() {
             <Route path='*' element={<h1>Wrong page!</h1>} />
           </Routes>
         </ChakraProvider>
-      </Router>
+      </HashRouter>
     </ApolloProvider>
   );
 }

@@ -8,7 +8,7 @@ export default function DonationProcessed() {
 
     useEffect(()=> {
         setTimeout(() => {
-            window.location.assign(`/project-display/${projectId}`)
+            window.location.assign(`/#/project-display/${projectId}`)
         }, 2500)
     }, [])
     return (
