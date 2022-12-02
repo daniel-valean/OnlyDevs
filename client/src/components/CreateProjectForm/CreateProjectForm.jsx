@@ -46,7 +46,7 @@ export default function CreateProjectForm() {
                 }
             })
             if(data) {
-                window.location.assign(`/project-display/${data.addProject._id}`);
+                window.location.assign(`/#/project-display/${data.addProject._id}`);
             }
         }catch(error){
             console.log(error)
