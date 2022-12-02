@@ -47,8 +47,8 @@ const resolvers = {
                 payment_method_types: ['card'],
                 line_items,
                 mode: 'payment',
-                success_url: `${url}/donation-processed/${args._id}`,
-                cancel_url: `${url}/project-display/${args._id}`
+                success_url: `${url}/#/donation-processed/${args._id}`,
+                cancel_url: `${url}/#/project-display/${args._id}`
             });
             if(session) {
                 if(context.user) { 
