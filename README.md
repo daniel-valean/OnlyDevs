@@ -65,14 +65,7 @@
 ----
 
 ## Desktop Demo
-<img src= ""></img>
-
-----
-
-## Mobile Demo
-<p align="center">
-<img src= ""></img>
-</p>
+<img src= "client/src/images/DesktopDemo.gif"></img>
 
 ----
 
