@@ -51,24 +51,21 @@
 ## Usage
 
 -As a user you will;
-* As a user, I want to visit the webpage through my preferred browser.
-*
-*
-*
-*
-*If the user would like to review a collaborator on a project, they may scroll down to the bottom of the page to review each collaborator's GitHub and associated links.
+* Visit the webpage through my preferred browser.
+* In the header the user may click on any of the top links to take them to the associated section about the link selected.
+* Click on the "Log in" link in the header to sign into account. 
+* If you dont have an account, click on the "Sign Up" link in the header and enter in the proper information.
+* To add your personal project for people to donate to, click on the "Create" link in the header and fill out the project name, description, financial goal, and the impact of this project.
+* Click on "Projects" to view the Dev projects to read and possibly donate to.
+* To donate, click on the project you want to donate to. At the bottom left enter the amount you would like to give and press the "Donate" button.
+* After pressing the "Donate" button, it will bring up the payment information page where you will fill out your information and your donation will be comeplete.
+* To send a message to the project creator, go to the project page and click the "Activity" button at the bottom right and previous messages will appear at the right of the screen.  You can also add your own message.
+* If the user would like to review a collaborator on a project, they may scroll down to the bottom of the page to review each collaborator's GitHub and associated links.
 
 ----
 
 ## Desktop Demo
-<img src= ""></img>
-
-----
-
-## Mobile Demo
-<p align="center">
-<img src= ""></img>
-</p>
+<img src= "client/src/images/DesktopDemo.gif"></img>
 
 ----
 
