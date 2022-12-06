@@ -1,6 +1,6 @@
 import './ProjectDisplay.css'
 import Header from '../../components/Header/Header'
-import { Card, CardBody, Heading, Button, Image, Progress, CircularProgress, Text, InputGroup, InputLeftElement, Input, Drawer, DrawerOverlay, DrawerCloseButton, DrawerHeader, DrawerBody, DrawerContent, useDisclosure, Avatar, Divider } from '@chakra-ui/react'
+import { Card, CardBody, Heading, Button, Image, Progress, CircularProgress, Text, InputGroup, InputLeftElement, Input, Drawer, DrawerOverlay, DrawerCloseButton, DrawerHeader, DrawerBody, DrawerContent, useDisclosure, Avatar, Divider, FormControl } from '@chakra-ui/react'
 import { useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
@@ -11,6 +11,7 @@ import Confetti from 'react-confetti';
 import { loadStripe } from '@stripe/stripe-js';
 import { useEffect } from 'react';
 import progressFundingReached from '../../components/sounds/progressFundingReached.mp3'
+import { useToastHook } from '../../utils/Toast';
 
 // const avatarArray = ['red', 'blue', 'green', 'purple', 'yellow']; 
 // const avatarPicker = () => {
@@ -24,6 +25,7 @@ const stripePromise = loadStripe('pk_test_51M9D8lCh7zP8YFj8xPKACfk85tR6oJn74U7qh
 export default function ProjectDisplay() {
     const [soundValue, setSound] = useState(0);
 
+    const [state, newToast] = useToastHook();
 
     function playSound() {
         // new Audio(demo).play()
@@ -40,6 +42,7 @@ export default function ProjectDisplay() {
             });
         }
     }, [checkoutData])
+
     const { projectId } = useParams();
     const [addComment, { error }] = useMutation(ADD_COMMENT)
 
@@ -91,6 +94,12 @@ export default function ProjectDisplay() {
 
     async function handleDonationSubmit(e) {
         e.preventDefault();
+        newToast({
+            message: "We're re-directing you to checkout",
+            status: "loading",
+            title: "Hang Tight!",
+            position: "bottom"
+        });
         try {
             await getCheckout({
                 variables: {
@@ -130,14 +139,16 @@ export default function ProjectDisplay() {
                                 {data.getProject.purpose}
                             </Text>
                             <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between' }}>
-                                <form onSubmit={handleDonationSubmit} style={{ display: 'flex' }}>
-                                    <InputGroup width='100%' marginRight='10px'>
-                                        <InputLeftElement pointerEvents='none' color='gray.300' fontSize='1.2em' children='$' />
-                                        <Input onChange={handleInputChange} bg='white' type='number' marginBottom='20px' value={donationAmount} placeholder='Enter amount' name='donationAmount' />
-                                    </InputGroup>
-                                    <Button type='submit' align='center' fontSize='2xl' variant='solid' colorScheme='blue' bg='#05d5f4' color='white' width='100%'>
-                                        Donate
-                                    </Button>
+                                <form onSubmit={handleDonationSubmit}>
+                                    <FormControl display="flex" isRequired>
+                                        <InputGroup width='100%' marginRight='10px'>
+                                            <InputLeftElement pointerEvents='none' color='gray.300' fontSize='1.2em' children='$' />
+                                            <Input onChange={handleInputChange} bg='white' type='number' marginBottom='20px' value={donationAmount} placeholder='Enter amount' name='donationAmount' />
+                                        </InputGroup>
+                                        <Button type='submit' align='center' fontSize='2xl' variant='solid' colorScheme='blue' bg='#05d5f4' color='white' width='100%'>
+                                            Donate
+                                        </Button>
+                                    </FormControl>
                                 </form>
 
                                 <Button align='center' fontSize='2xl' variant='solid' colorScheme='blue' bg='#05d5f4' color='white' width='12%' onClick={() => handleClick()}>

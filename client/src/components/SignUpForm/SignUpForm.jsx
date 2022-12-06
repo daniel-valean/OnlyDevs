@@ -29,7 +29,12 @@ export default function SignUpForm() {
 
     useEffect(() => {
         if (formType === "sign-up-from-create") {
-            newToast({ message: "Please sign-up to create a project", status: "warning", title: "Looks like you're not logged in" });
+            newToast({
+                message: "Please sign-up to create a project",
+                status: "warning",
+                title: "Looks like you're not logged in",
+                position: "top"
+            });
         }
     }, [])
 
@@ -93,7 +98,7 @@ export default function SignUpForm() {
                     <Input onChange={handleInputChange} value={email} type='email' name='email' placeholder='Enter Email' />
                     <FormHelperText marginBottom="20px">We'll never share your email.</FormHelperText>
 
-                    <FormControl isInvalid={isError}>
+                    <FormControl isInvalid={isError} isRequired>
                         <FormLabel>Password</FormLabel>
                         <InputGroup size='md' marginBottom="20px">
                             <Input

@@ -7,14 +7,14 @@ export function useToastHook() {
 
     useEffect(() => {
         if (state) {
-            const { message, status, title } = state;
+            const { message, status, title, position } = state;
 
             toast({
                 title: title,
                 description: message,
                 status: status,
                 duration: 3000,
-                position: 'top',
+                position: position,
                 isClosable: true,
             });
         }
