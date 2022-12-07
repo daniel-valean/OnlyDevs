@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="400" height="130" src="client/src/images/logo.png">
+    <img width="400" height="130" src="./client/src/images/Logo.png">
 </p>
 
 ----
@@ -12,7 +12,7 @@
 * The webpage allows the user to sign up/log in and donate money to their preferred projects using stripe.
 
 
-## [OnlyDevs Deployed Application]()
+## [OnlyDevs Deployed Application (External Link)](https://the-only-devs.herokuapp.com/)
 
 ----
 
