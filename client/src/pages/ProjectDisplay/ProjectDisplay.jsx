@@ -51,13 +51,13 @@ export default function ProjectDisplay() {
             id: projectId
         }
     });
-    useEffect(() => {
-        if (!loading) {
-            if (data.getProject.fundingProgress >= data.getProject.fundingGoal) {
-                playSound();
-            }
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (!loading) {
+    //         if (data.getProject.fundingProgress >= data.getProject.fundingGoal) {
+    //             playSound();
+    //         }
+    //     }
+    // }, [])
 
     const [donationAmount, setDonationAmount] = useState('');
     const [userComment, setUserComment] = useState('');
